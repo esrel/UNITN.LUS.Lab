@@ -55,10 +55,10 @@ def conlleval(data, otag='O'):
             ref_b = is_boc(ref, ref_iob, prev_ref, prev_ref_iob, otag)
             hyp_b = is_boc(hyp, hyp_iob, prev_hyp, prev_hyp_iob, otag)
 
-            if not cls.get(ref):
+            if not cls.get(ref) and ref:
                 cls[ref] = stats()
 
-            if not cls.get(hyp):
+            if not cls.get(hyp) and hyp:
                 cls[hyp] = stats()
 
             # segment-level counts
@@ -80,7 +80,7 @@ def conlleval(data, otag='O'):
 
             if hyp_b:
                 seg['hyp'] += 1
-                cls[ref]['hyp'] += 1
+                cls[hyp]['hyp'] += 1
 
             # token-level counts
             if ref == hyp and ref_iob == hyp_iob:
@@ -177,8 +177,8 @@ def score(cor_cnt, hyp_cnt, ref_cnt):
 
 def summarize(seg, cls):
     # class-level
-    res = {lbl: score(cls[lbl]['cor'], cls[lbl]['hyp'], cls[lbl]['ref']) for lbl in set(cls.keys())
-           if lbl not in ['', None]}
+    res = {lbl: score(cls[lbl]['cor'], cls[lbl]['hyp'], cls[lbl]['ref']) for lbl in set(cls.keys())}
+    #       if lbl not in ['', None]}
     # micro
     res.update({"total": score(seg.get('cor', 0), seg.get('hyp', 0), seg.get('ref', 0))})
     return res
