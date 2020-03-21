@@ -178,7 +178,6 @@ def score(cor_cnt, hyp_cnt, ref_cnt):
 def summarize(seg, cls):
     # class-level
     res = {lbl: score(cls[lbl]['cor'], cls[lbl]['hyp'], cls[lbl]['ref']) for lbl in set(cls.keys())}
-    #       if lbl not in ['', None]}
     # micro
     res.update({"total": score(seg.get('cor', 0), seg.get('hyp', 0), seg.get('ref', 0))})
     return res
