@@ -1,4 +1,6 @@
 
 .DS_Store
-.DS_Store
 .ipynb_checkpoints/
+.idea/
+__pycache__/
+notebooks/NL2SparQL4NLU/
