@@ -28,8 +28,6 @@ Language Understanding Systems Lab
     0. Markov Property (Assumption)   
     0. Maximum Likelihood Estimation
 
-0. Ngram Language Modeling with Weighted Finite State Machines
-
 0. Classification [TODO]
     0. Bayes (Conditional Independence) Assumption 
     0. Naive Bayes Classifier
@@ -45,15 +43,9 @@ Language Understanding Systems Lab
         0. Joint Segmentation and Classification
         0. Named Entity Recognition [TODO]
 
-0. Sequence Labeling with Weighted Finite State Machines
 
-0. Graphical Models
-    0. Bayesian Networks
-    0. Markov Random Field
-        0. Conditional Random Fields
-
-0. Markov Decision Process
-
-0. Reinforcement Learning
-
-0. Partially Observable Markov Decision Process
+----------
+__Weighted Finite State Machines__ ([OpenFST](http://www.openfst.org/) & [OpenGRM](http://www.opengrm.org/))
+    
+    0. Ngram Modeling 
+    0. Sequence Labeling
