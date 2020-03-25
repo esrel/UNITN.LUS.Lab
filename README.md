@@ -1,5 +1,4 @@
-# LUS
-Language Understanding Systems Lab
+# Language Understanding Systems Lab (LUS)
 
 ## Outline
 
@@ -45,7 +44,8 @@ Language Understanding Systems Lab
 
 
 ----------
-__Weighted Finite State Machines__ ([OpenFST](http://www.openfst.org/) & [OpenGRM](http://www.opengrm.org/))
+## Weighted Finite State Machines ([OpenFST](http://www.openfst.org/) & [OpenGRM](http://www.opengrm.org/))
+    
     
     0. Ngram Modeling 
     0. Sequence Labeling
