@@ -24,7 +24,7 @@ def align_hyp(ref, hyp):
     out = []
     for i in range(len(ref)):
         if len(ref[i]) != len(hyp[i]):
-            raise ValueError("Size Mismatch: ref: {} & hyp: {}".format(len(ref), len(hyp)))
+            raise ValueError("Size Mismatch: ref: {} & hyp: {}".format(len(ref[i]), len(hyp[i])))
         out.append([(*ref[i][j], hyp[i][j][-1]) for j in range(len(ref[i]))])
     return out
 
@@ -211,6 +211,53 @@ def read_corpus_conll(corpus_file, fs="\t"):
     return sents
 
 
+def write_corpus_conll(corpus, corpus_file, fs="\t", ss="\n"):
+    """
+    read corpus in CoNLL format
+    :param corpus: corpus to write
+    :param corpus_file: file to write corpus into in conll format
+    :param fs: field separator
+    :param ss: sentence separator
+    """
+    with open(corpus_file, 'w') as f:
+        for sent in corpus:
+            for token in sent:
+                f.write(fs.join(token) + "\n")
+            f.write(ss)
+
+
 def get_chunks(corpus_file, fs="\t", otag="O"):
     sents = read_corpus_conll(corpus_file, fs=fs)
     return set([parse_iob(token[-1])[1] for sent in sents for token in sent if token[-1] != otag])
+
+
+def get_column(corpus, column=-1):
+    return [[word[column] for word in sent] for sent in corpus]
+
+
+def cutoff4oov(trn, tst, cut_off=2, ext='.oov'):
+    from corpus import Corpus, Lexicon
+
+    trn_sents = read_corpus_conll(trn)
+    tst_sents = read_corpus_conll(tst)
+
+    trn_wrds = get_column(trn_sents, column=0)
+    trn_tags = get_column(trn_sents)
+
+    tst_wrds = get_column(tst_sents, column=0)
+    tst_tags = get_column(tst_sents)
+
+    lexicon = Lexicon(corpus=trn_wrds)
+    lexicon.cutoff(cut_off)
+
+    corp = Corpus()
+    corp.lexicon = lexicon
+    trn_data = corp.oov(trn_wrds)
+    trn_corp = [list(zip(trn_data[i], trn_tags[i])) for i in range(len(trn_data))]
+
+    tst_data = corp.oov(tst_wrds)
+    tst_corp = [list(zip(tst_data[i], tst_tags[i])) for i in range(len(tst_data))]
+
+    write_corpus_conll(trn_corp, trn+ext)
+    write_corpus_conll(tst_corp, tst+ext)
+

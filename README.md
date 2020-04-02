@@ -14,24 +14,30 @@
             - Frequency Cut-Off
             - Stop-words and Stop-word Removal
     
-    - Corpus Normalization (Pre-processing) [TODO]
+    - Corpus Pre-processing [TODO]
         - Normalization
         - Tokenization/Detokenization
         - Lowercasing/Truecasing
         - Word Classes and Normalization
-            - Regular Expressions for Text Normalization
+            - Removal vs. Generalization
+        - Lemmatization
+        - Stemming
 
 0. [Ngram Modeling](notebooks/ngram_modeling.ipynb)
 
-    - Markov Models: Markov Chain
-    - Markov Property (Assumption)   
-    - Maximum Likelihood Estimation
+    - Ngrams
+        - Ngram Counting
+        - Ngram Probabilties
+        
+    - Ngram Language Models
+
+        - Markov Models: Markov Chain
+        - Markov Property (Assumption)   
+        - Maximum Likelihood Estimation
 
 0. Classification [TODO]
     - Bayes (Conditional Independence) Assumption 
     - Naive Bayes Classifier
-    - Logistic Regression
-    - Feature Selection Basics
 
 0. [Sequence Labeling](notebooks/sequence_labeling.ipynb)
     - Markov Models: Hidden Markov Models
@@ -44,8 +50,8 @@
 
 
 ----------
-## Weighted Finite State Machines ([OpenFST](http://www.openfst.org/) & [OpenGRM](http://www.opengrm.org/))
-    
-    
-    0. Ngram Modeling 
-    0. Sequence Labeling
+## Weighted Finite State Machine Exercises (with [OpenFST](http://www.openfst.org/) & [OpenGRM](http://www.opengrm.org/))
+
+0. [WFSM Operations](notebooks/wfsm_operations.ipynb)
+0. [Ngram Modeling](notebooks/wfsm_ngram_modeling.ipynb) 
+0. [Sequence Labeling](notebooks/wfsm_sequence_labeling.ipynb)
