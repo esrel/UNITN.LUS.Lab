@@ -1,2 +1,2 @@
-# LUS
-Language Understanding Systems Lab
+# Language Understanding Systems Lab
+
